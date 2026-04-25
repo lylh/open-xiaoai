@@ -13,15 +13,15 @@ export const kOpenXiaoAIConfig: OpenXiaoAIConfig = {
      * - ❌ https://api.openai.com/v1/（最后多了一个 /
      * - ❌ https://api.openai.com/v1/chat/completions（不需要加 /chat/completions）
      */
-    baseURL: "https://api.openai.com/v1",
+    baseURL: "https://api-inference.modelscope.cn/v1",
     /**
      * API 密钥
      */
-    apiKey: "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    apiKey: "ms-d2c67c1f-fb24-4c1c-9d12-ec400bc6bb4f",
     /**
      * 模型名称
      */
-    model: "gpt-4.1-mini",
+    model: "deepseek-ai/DeepSeek-V3.2",
   },
   prompt: {
     /**
@@ -68,5 +68,47 @@ export const kOpenXiaoAIConfig: OpenXiaoAIConfig = {
       // 告诉 MiGPT 已经处理过这条消息了，不再使用默认的 AI 回复
       return { handled: true };
     }
+  },
+  /**
+   * MCP 配置
+   * 
+   * 配置示例：
+   * mcp: {
+   *   enabled: true,
+   *   servers: [
+   *     // stdio服务器示例
+   *     {
+   *       name: "filesystem",
+   *       type: "stdio",
+   *       command: "npx",
+   *       args: ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/files"],
+   *       env: {}
+   *     },
+   *     // HTTP服务器示例
+   *     {
+   *       name: "tavily-mcp",
+   *       type: "http",
+   *       url: "https://mcp.api-inference.modelscope.net/25f0976d0d9742/mcp",
+   *       headers: {}
+   *     }
+   *   ],
+   *   enableAutoToolCall: true, // 启用自动工具调用
+   *   toolCallKeywords: ["调用", "查询", "搜索", "获取", "文件", "读取"] // 触发MCP工具调用的关键词
+   * }
+   */
+  mcp: {
+    enabled: true, // 默认关闭，需要时设置为true
+    servers: [
+      // HTTP MCP服务器示例
+      {
+        name: "tavily-mcp",
+        type: "http",
+        url: "https://mcp.api-inference.modelscope.net/9c9a3fc03bb540/mcp",
+        headers: {}
+      }
+    ],
+    enableAutoToolCall: true,
+    toolCallKeywords: ["调用", "查询", "搜索", "获取", "文件", "读取", "搜索网络", "查找信息"],
+    timeout: 30000,
   },
 };

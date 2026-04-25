@@ -19,11 +19,11 @@ pub struct AppServer;
 async fn test() -> Result<(), AppError> {
     SpeakerManager::play_text("已连接").await?;
 
-    // let _ = RPC::instance()
-    //     .call_remote("start_recording", None, None)
-    //     .await;
+    let _ = RPC::instance()
+        .call_remote("start_recording", None, None)
+        .await;
 
-    // let _ = RPC::instance().call_remote("start_play", None, None).await;
+    let _ = RPC::instance().call_remote("start_play", None, None).await;
 
     Ok(())
 }

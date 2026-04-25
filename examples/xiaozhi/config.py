@@ -54,9 +54,9 @@ APP_CONFIG = {
     },
     "vad": {
         # 录音音量增强倍数（小爱音箱录音音量较小，需要后期放大一下）
-        "boost": 10,
+        "boost": 100,
         # 语音检测阈值（0-1，越小越灵敏）
-        "threshold": 0.10,
+        "threshold": 0.50,
         # 最小语音时长（ms）
         "min_speech_duration": 250,
         # 最小静默时长（ms）
@@ -66,7 +66,7 @@ APP_CONFIG = {
         "OTA_URL": "https://api.tenclass.net/xiaozhi/ota/",
         "WEBSOCKET_URL": "wss://api.tenclass.net/xiaozhi/v1/",
         "WEBSOCKET_ACCESS_TOKEN": "", #（可选）一般用不到这个值
-        "DEVICE_ID": "", #（可选）默认自动生成
+        "DEVICE_ID": "02:42:ac:11:00:04", #（可选）默认自动生成
         "VERIFICATION_CODE": "", # 首次登陆时，验证码会在这里更新
     },
 }
